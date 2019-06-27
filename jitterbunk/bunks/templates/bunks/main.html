@@ -1,0 +1,32 @@
+{% if page_on%}
+    <p>Who is {{ user.username}} bunking?</p>
+    {% if from_user_bunk_list%}
+        <ul>
+        {% for bunk in from_user_bunk_list %}
+            <li><b>{{ bunk.from_user.username }}</b> bunk'd <b>{{ bunk.to_user.username }}</b> on {{ bunk.time}}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <ul><li>{{ user.username}} hasn't gotten bunk'd. :(</li></ul>
+    {% endif %}
+
+    <p>Who is {{ user.username}} getting bunked by?</p>
+    {% if to_user_bunk_list%}
+        <ul>
+        {% for bunk in to_user_bunk_list %}
+            <li><b>{{ bunk.from_user.username }}</b> bunk'd <b>{{ bunk.to_user.username }}</b> on {{ bunk.time}}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <ul><li>{{ user.username}} hasn't been bunk'd by anyone. :(</li></ul>
+    {% endif %}
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    <form action="{% url 'bunks:bunk' user.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Bunk" />
+    </form>
+{% else %}
+    <p>Sorry, try a different id.</p>
+{% endif %}

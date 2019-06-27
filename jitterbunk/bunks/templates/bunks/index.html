@@ -1,0 +1,19 @@
+{% comment %}
+This file is essentially the home page that the user will look at upon
+opening the website.
+{% endcomment %}
+
+{% if latest_bunk_list %}
+    <ul>
+    <p>'cuz uptown <b>bunk</b> gon' give it to you</p>
+    <p>Here are the most recent bunks!</p>
+    {% for bunk in latest_bunk_list %}
+        <li><b>{{ bunk.from_user.username }}</b> bunk'd <b>{{ bunk.to_user.username }}</b> on {{ bunk.time}}</li>
+    {% endfor %}
+    <p>/accounts/login to log in</p>
+    <p>/accounts/signup to sign up</p>
+    <p>/bunks/# to access accounts, starts from 6 onwards</p>
+    </ul>
+{% else %}
+    <p>No bunks are available.</p>
+{% endif %}

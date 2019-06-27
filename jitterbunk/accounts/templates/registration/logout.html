@@ -1,0 +1,23 @@
+<!-- templates/registration/logout.html -->
+{% comment %}
+    Not working and not used, intended for a future extension if I wanted to
+    do that.
+
+    Goal: When you log out, redirect to this page to give you the option of
+    logging back in.
+{% endcomment %}
+
+{% extends 'base.html' %}
+
+{% block title %}You've been logged out{% endblock %}
+
+{% block title %}Login as different user{% endblock %}
+
+{% block content %}
+<h2>Login</h2>
+<form method="post" autocomplete="off">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+</form>
+{% endblock %}
